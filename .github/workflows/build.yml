@@ -1,0 +1,27 @@
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+jobs:
+  windows:
+    runs-on: windows-2016
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install
+        shell: cmd
+        run: |
+          curl -LO https://files.salome-platform.org/Salome/Salome9.7.0/SALOME-9.7.0.zip
+          mkdir C:\work
+          7z x SALOME-9.7.0.zip -oC:\work > nul
+          dir /p C:\work\SALOME-9.7.0\W64
+          curl -LO https://github.com/libgeos/geos/archive/refs/tags/3.9.2.zip
+          7z x 3.9.2.zip -oC:\work > nul
+          cmake -S "C:/work/geos-3.9.2" -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/geos" -DBUILD_TESTING=OFF && cmake --build . --config Release --target install
+          del CMakeCache.txt
+          git clone https://github.com/jschueller/sqlite.git && cmake -S sqlite -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/sqlite" && cmake --build . --config Release --target install
+          curl -LO https://github.com/OSGeo/PROJ/archive/refs/tags/8.0.1.zip
+          7z x 8.0.1.zip -oC:\work > nul
+          del CMakeCache.txt
+          cmake -S "C:/work/proj-8.0.1" -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/proj" -DENABLE_TIFF=OFF -DENABLE_CURL=OFF -DBUILD_PROJSYNC=OFF -DBUILD_TESTING=OFF -DSQLITE3_INCLUDE_DIR="C:/work/SALOME-9.7.0/W64/sqlite/include" -DSQLITE3_LIBRARY="C:/work/SALOME-9.7.0/W64/sqlite/lib/sqlite3.lib" -DEXE_SQLITE3="C:/work/SALOME-9.7.0/W64/sqlite/bin/sqlite3" && cmake --build . --config Release --target install
+          
+
