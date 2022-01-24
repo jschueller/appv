@@ -15,8 +15,6 @@ jobs:
           7z x SALOME-9.7.0.zip -oC:\work > nul
           dir /p C:\work\SALOME-9.7.0\W64
 
-          cmake --version
-          
           git clone --depth 1 https://github.com/madler/zlib.git
           cmake -LAH -S zlib -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/zlib" && cmake --build . --config Release --target install
 
@@ -53,6 +51,10 @@ jobs:
           git clone --depth 1 https://github.com/OSGeo/gdal.git
           del CMakeCache.txt
           cmake -LAH -S gdal -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/gdal" -DPROJ_LIBRARY="C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib" -DPROJ_INCLUDE_DIR="C:/work/SALOME-9.7.0/W64/proj/include" -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DGDAL_USE_MYSQL=OFF -DGDAL_USE_SQLITE3=OFF -DGDAL_ENABLE_PLUGINS=OFF -DJPEG_LIBRARY=C:/work/SALOME-9.7.0/W64/jpeg/lib/jpeg.lib -DJPEG_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/jpeg/include -DRENAME_INTERNAL_LIBJPEG_SYMBOLS=OFF -DBUILD_APPS=OFF -DBUILD_CSHARP_BINDINGS=OFF -DBUILD_DOCS=OFF -DBUILD_JAVA_BINDINGS=OFF -DBUILD_PYTHON_BINDINGS=OFF -DBUILD_TESTING=OFF && cmake --build . --config Release --target install
+
+          curl -LO https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.13.0.zip
+          7z x v3.13.0.zip
+          cmake -LAH -S protobuf-3.13.0/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/protobuf" -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
 
           curl -LO https://downloads.sourceforge.net/winflexbison/files/win_flex_bison3-latest.zip
           7z x win_flex_bison3-latest.zip
