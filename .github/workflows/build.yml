@@ -10,6 +10,21 @@ jobs:
       - name: Install
         shell: cmd
         run: |
+          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\Hostx86"
+          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin"
+          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023"
+          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools"
+          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary"
+          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build"
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
+          nmake /HELP
+          
+          curl -LO http://www.gaia-gis.it/gaia-sins/libspatialite-5.0.1.zip
+          7z x libspatialite-5.0.1.zip
+          cd libspatialite-5.0.1
+          nmake /f makefile.vc
+          nmake /f makefile.vc install
+
           curl -LO https://files.salome-platform.org/Salome/Salome9.7.0/SALOME-9.7.0.zip
           mkdir C:\work
           7z x SALOME-9.7.0.zip -oC:\work > nul
@@ -56,10 +71,6 @@ jobs:
           7z x v3.13.0.zip
           del CMakeCache.txt
           cmake -LAH -S protobuf-3.13.0/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
-
-          curl -LO http://www.gaia-gis.it/gaia-sins/libspatialite-5.0.1.zip
-          7z x libspatialite-5.0.1.zip
-          cd libspatialite-5.0.1 && nmake /f makefile.vc && nmake /f makefile.vc install && cd -
 
           curl -LO https://github.com/libspatialindex/libspatialindex/archive/refs/tags/1.9.3.zip
           7z x 1.9.3.zip
