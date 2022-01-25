@@ -54,7 +54,8 @@ jobs:
 
           curl -LO https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.13.0.zip
           7z x v3.13.0.zip
-          cmake -LAH -S protobuf-3.13.0/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/protobuf" -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
+          del CMakeCache.txt
+          cmake -LAH -S protobuf-3.13.0/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
 
           curl -LO https://downloads.sourceforge.net/winflexbison/files/win_flex_bison3-latest.zip
           7z x win_flex_bison3-latest.zip
@@ -66,5 +67,5 @@ jobs:
           7z x final-3_16_16.zip -oC:\work > nul
           dir /p C:\work
           del CMakeCache.txt
-          cmake -LAH -S "C:/work/QGIS-final-3_16_16" -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/qgis" -DFLEX_EXECUTABLE=C:/work/win_flex.exe -DBISON_EXECUTABLE=C:/work/win_bison.exe -DGEOS_INCLUDE_DIR="C:/work/SALOME-9.7.0/W64/geos/include" -DGEOS_LIBRARY="C:/work/SALOME-9.7.0/W64/geos/lib/geos.lib" -DGDAL_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/gdal/include -DGDAL_LIBRARY=C:/work/SALOME-9.7.0/W64/gdal/lib/gdal.lib -DLIBZIP_LIBRARY=C:/work/SALOME-9.7.0/W64/libzip/lib/zip.lib -DLIBZIP_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/libzip/include -DLIBZIP_CONF_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/libzip/include && cmake --build . --config Release --target install
+          cmake -LAH -S "C:/work/QGIS-final-3_16_16" -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/qgis" -DFLEX_EXECUTABLE=C:/work/win_flex.exe -DBISON_EXECUTABLE=C:/work/win_bison.exe -DGEOS_INCLUDE_DIR="C:/work/SALOME-9.7.0/W64/geos/include" -DGEOS_LIBRARY="C:/work/SALOME-9.7.0/W64/geos/lib/geos.lib" -DGDAL_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/gdal/include -DGDAL_LIBRARY=C:/work/SALOME-9.7.0/W64/gdal/lib/gdal.lib -DLIBZIP_LIBRARY=C:/work/SALOME-9.7.0/W64/libzip/lib/zip.lib -DLIBZIP_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/libzip/include -DLIBZIP_CONF_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/libzip/include -DProtobuf_LIBRARY=  C:/work/SALOME-9.7.0/W64/protobuf/lib/libprotobuf.lib -DProtobuf_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/protobuf/include -DProtobuf_PROTOC_EXECUTABLE=C:/work/SALOME-9.7.0/W64/protobuf/bin/protoc && cmake --build . --config Release --target install
 
