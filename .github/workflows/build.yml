@@ -10,21 +10,6 @@ jobs:
       - name: Install
         shell: cmd
         run: |
-          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\Hostx86"
-          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin"
-          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023"
-          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools"
-          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary"
-          dir /p "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build"
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
-          nmake /HELP
-          
-          curl -LO http://www.gaia-gis.it/gaia-sins/libspatialite-5.0.1.zip
-          7z x libspatialite-5.0.1.zip
-          cd libspatialite-5.0.1
-          nmake /f makefile.vc
-          nmake /f makefile.vc install
-
           curl -LO https://files.salome-platform.org/Salome/Salome9.7.0/SALOME-9.7.0.zip
           mkdir C:\work
           7z x SALOME-9.7.0.zip -oC:\work > nul
@@ -42,6 +27,11 @@ jobs:
           del CMakeCache.txt
           cmake -LAH -S C:/work/libzip-1.8.0 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/libzip -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DBZIP2_LIBRARIES=C:/work/SALOME-9.7.0/W64/bzip2/lib/bz2.lib -DBZIP2_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/bzip2/include -DENABLE_BZIP2=OFF && cmake --build . --config Release --target install
 
+          curl -LO https://github.com/zlib-ng/minizip-ng/archive/refs/tags/3.0.4.zip
+          7z x 3.0.4.zip
+          del CMakeCache.txt
+          cmake -LAH -S minizip-ng-3.0.4 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/minizip && cmake --build . --config Release --target install          
+          
           curl -LO https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/2.1.2.zip
           7z x 2.1.2.zip
           del CMakeCache.txt
@@ -72,11 +62,19 @@ jobs:
           del CMakeCache.txt
           cmake -LAH -S protobuf-3.13.0/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
 
+          echo call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+          echo nmake /HELP
+          curl -LO http://www.gaia-gis.it/gaia-sins/libspatialite-5.0.1.zip
+          7z x libspatialite-5.0.1.zip
+          git clone --depth 1 https://github.com/jschueller/libspatialite.git
+          del CMakeCache.txt
+          cmake -LAH -S libspatialite -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/spatiallite -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DPROJ_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib -DPROJ_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/proj/include -DGEOS_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/geos/include -DGEOS_LIBRARY=C:/work/SALOME-9.7.0/W64/geos/lib/geos.lib -DMINIZIP_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/minizip.lib -DMINIZIP_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/minizip/include && cmake --build . --config Release --target install
+          
           curl -LO https://github.com/libspatialindex/libspatialindex/archive/refs/tags/1.9.3.zip
           7z x 1.9.3.zip
           del CMakeCache.txt
           cmake -LAH -S libspatialindex-1.9.3 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/spatialindex && cmake --build . --config Release --target install        
-          
+
           curl -LO https://downloads.sourceforge.net/winflexbison/files/win_flex_bison3-latest.zip
           7z x win_flex_bison3-latest.zip
 
@@ -87,5 +85,5 @@ jobs:
           7z x final-3_16_16.zip -oC:\work > nul
           dir /p C:\work
           del CMakeCache.txt
-          cmake -LAH -S "C:/work/QGIS-final-3_16_16" -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/qgis" -DFLEX_EXECUTABLE=C:/work/win_flex.exe -DBISON_EXECUTABLE=C:/work/win_bison.exe -DGEOS_INCLUDE_DIR="C:/work/SALOME-9.7.0/W64/geos/include" -DGEOS_LIBRARY="C:/work/SALOME-9.7.0/W64/geos/lib/geos.lib" -DGDAL_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/gdal/include -DGDAL_LIBRARY=C:/work/SALOME-9.7.0/W64/gdal/lib/gdal.lib -DLIBZIP_LIBRARY=C:/work/SALOME-9.7.0/W64/libzip/lib/zip.lib -DLIBZIP_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/libzip/include -DLIBZIP_CONF_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/libzip/include -DProtobuf_LIBRARY=C:/work/SALOME-9.7.0/W64/protobuf/lib/libprotobuf.lib -DProtobuf_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/protobuf/include -DProtobuf_PROTOC_EXECUTABLE=C:/work/SALOME-9.7.0/W64/protobuf/bin/protoc -DSQLITE3_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/sqlite/include -DSQLITE3_LIBRARY=C:/work/SALOME-9.7.0/W64/sqlite/lib/sqlite3.lib -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DPROJ_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib -DPROJ_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/proj/include -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DQWT_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/qwt/include -DQWT_LIBRARY=C:/work/SALOME-9.7.0/W64/qwt/lib/qwt.lib -DWITH_QTWEBKIT=FALSE -DWITH_GEOREFERENCER=FALSE -DWITH_3D=OFF -DWITH_BINDINGS=OFF -DWITH_SERVER=OFF -DWITH_CUSTOM_WIDGETS=OFF -DWITH_QUICK=OFF -DWITH_QGIS_PROCESS=OFF -DWITH_POSTGRESQL=OFF -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF && cmake --build . --config Release --target install
+          cmake -LAH -S "C:/work/QGIS-final-3_16_16" -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/qgis" -DFLEX_EXECUTABLE=C:/work/win_flex.exe -DBISON_EXECUTABLE=C:/work/win_bison.exe -DGEOS_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/geos/include -DGEOS_LIBRARY=C:/work/SALOME-9.7.0/W64/geos/lib/geos.lib -DGDAL_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/gdal/include -DGDAL_LIBRARY=C:/work/SALOME-9.7.0/W64/gdal/lib/gdal.lib -DLIBZIP_LIBRARY=C:/work/SALOME-9.7.0/W64/libzip/lib/zip.lib -DLIBZIP_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/libzip/include -DLIBZIP_CONF_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/libzip/include -DProtobuf_LIBRARY=C:/work/SALOME-9.7.0/W64/protobuf/lib/libprotobuf.lib -DProtobuf_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/protobuf/include -DProtobuf_PROTOC_EXECUTABLE=C:/work/SALOME-9.7.0/W64/protobuf/bin/protoc -DSQLITE3_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/sqlite/include -DSQLITE3_LIBRARY=C:/work/SALOME-9.7.0/W64/sqlite/lib/sqlite3.lib -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DPROJ_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib -DPROJ_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/proj/include -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DQWT_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/qwt/include -DQWT_LIBRARY=C:/work/SALOME-9.7.0/W64/qwt/lib/qwt.lib -DWITH_QTWEBKIT=FALSE -DWITH_GEOREFERENCER=FALSE -DWITH_3D=OFF -DWITH_BINDINGS=OFF -DWITH_SERVER=OFF -DWITH_CUSTOM_WIDGETS=OFF -DWITH_QUICK=OFF -DWITH_QGIS_PROCESS=OFF -DWITH_POSTGRESQL=OFF -DENABLE_TESTS=OFF -DWITH_QSPATIALITE=OFF && cmake --build . --config Release --target install
 
