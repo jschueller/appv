@@ -30,7 +30,11 @@ jobs:
           curl -LO https://github.com/zlib-ng/minizip-ng/archive/refs/tags/3.0.4.zip
           7z x 3.0.4.zip
           del CMakeCache.txt
-          cmake -LAH -S minizip-ng-3.0.4 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/minizip && cmake --build . --config Release --target install          
+          cmake -LAH -S minizip-ng-3.0.4 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/minizip -DBZIP2_LIBRARY=C:/work/SALOME-9.7.0/W64/bzip2/lib/bz2.lib -DBZIP2_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/bzip2/include -DMZ_LZMA=OFF -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include && cmake --build . --config Release --target install
+          
+          git clone https://github.com/robotology-dependencies/libxml2-cmake-buildsystem.git
+          del CMakeCache.txt
+          cmake -LAH -S libxml2-cmake-buildsystem -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/libxml2 -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DLIBXML2_WITH_LZMA=OFF -DWITH_LZMA=OFF -DLIBXML2_WITH_ICONV=OFF -DWITH_ICONV=OFF && cmake --build . --config Release --target install
           
           curl -LO https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/2.1.2.zip
           7z x 2.1.2.zip
@@ -68,7 +72,7 @@ jobs:
           7z x libspatialite-5.0.1.zip
           git clone --depth 1 https://github.com/jschueller/libspatialite.git
           del CMakeCache.txt
-          cmake -LAH -S libspatialite -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/spatiallite -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DPROJ_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib -DPROJ_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/proj/include -DGEOS_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/geos/include -DGEOS_LIBRARY=C:/work/SALOME-9.7.0/W64/geos/lib/geos.lib -DMINIZIP_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/minizip.lib -DMINIZIP_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/minizip/include && cmake --build . --config Release --target install
+          cmake -LAH -S libspatialite -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/spatiallite -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DPROJ_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib -DPROJ_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/proj/include -DGEOS_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/geos/include -DGEOS_LIBRARY=C:/work/SALOME-9.7.0/W64/geos/lib/geos.lib -DMINIZIP_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/libminizip.lib -DMINIZIP_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/minizip/include -DLIBXML2_LIBRARY=C:/work/SALOME-9.7.0/W64/libxml2/lib/xml.lib -DLIBXML2_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/libxml2/include/libxml2 && cmake --build . --config Release --target install
           
           curl -LO https://github.com/libspatialindex/libspatialindex/archive/refs/tags/1.9.3.zip
           7z x 1.9.3.zip
