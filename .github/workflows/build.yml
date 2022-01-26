@@ -10,9 +10,6 @@ jobs:
       - name: Install
         shell: cmd
         run: |
-          git clone https://github.com/janbar/openssl-cmake.git
-          cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/openssl" && cmake --build . --config Release --target install
-        
           curl -LO https://files.salome-platform.org/Salome/Salome9.7.0/SALOME-9.7.0.zip
           mkdir C:\work
           7z x SALOME-9.7.0.zip -oC:\work > nul
@@ -20,6 +17,13 @@ jobs:
 
           git clone --depth 1 https://github.com/madler/zlib.git
           cmake -LAH -S zlib -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/zlib" && cmake --build . --config Release --target install
+
+          git clone https://github.com/janbar/openssl-cmake.git
+          cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/openssl && cmake --build . --config Release --target install
+
+          git clone https://github.com/KDE/qca.git && cd qca && git checkout 24e702e6cd0b0a65cf62317e068b0bb7126d4682 && cd ..
+          del CMakeCache.txt
+          cmake -LAH -S qca -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qca -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DZZZUSE_RELATIVE_PATHS=ON -DOPENSSL_ROOT_DIR=C:/work/SALOME-9.7.0/W64/openssl && cmake --build . --config Release --target install
 
           git clone --depth 1 https://gitlab.com/federicomenaquintero/bzip2.git
           del CMakeCache.txt
@@ -79,10 +83,6 @@ jobs:
           7z x 1.9.3.zip
           del CMakeCache.txt
           cmake -LAH -S libspatialindex-1.9.3 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/spatialindex && cmake --build . --config Release --target install        
-
-          git clone https://github.com/KDE/qca.git && cd qca && git checkout 24e702e6cd0b0a65cf62317e068b0bb7126d4682 && cd ..
-          del CMakeCache.txt
-          cmake -LAH -S qca -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qca -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DUSE_RELATIVE_PATHS=ON && cmake --build . --config Release --target install
 
           curl -LO https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.0/QScintilla_src-2.13.0.zip
           call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
