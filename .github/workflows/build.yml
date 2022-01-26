@@ -19,11 +19,12 @@ jobs:
           cmake -LAH -S zlib -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX="C:/work/SALOME-9.7.0/W64/zlib" && cmake --build . --config Release --target install
 
           git clone https://github.com/janbar/openssl-cmake.git
+          del CMakeCache.txt
           cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/openssl && cmake --build . --config Release --target install
 
           git clone https://github.com/KDE/qca.git && cd qca && git checkout 24e702e6cd0b0a65cf62317e068b0bb7126d4682 && cd ..
           del CMakeCache.txt
-          cmake -LAH -S qca -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qca -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DZZZUSE_RELATIVE_PATHS=ON -DOPENSSL_ROOT_DIR=C:/work/SALOME-9.7.0/W64/openssl && cmake --build . --config Release --target install
+          cmake -LAH -S qca -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qca -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DZZZUSE_RELATIVE_PATHS=ON -DOPENSSL_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/openssl/include -DOPENSSL_SSL_LIBRARY=C:/work/SALOME-9.7.0/W64/openssl/lib/libssl-1_1-x64.lib -DOPENSSL_CRYPTO_LIBRARY=C:/work/SALOME-9.7.0/W64/openssl/lib/libcrypto-1_1-x64.lib && cmake --build . --config Release --target install
 
           git clone --depth 1 https://gitlab.com/federicomenaquintero/bzip2.git
           del CMakeCache.txt
