@@ -66,8 +66,6 @@ jobs:
           del CMakeCache.txt
           cmake -LAH -S protobuf-3.13.0/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
 
-          echo call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
-          echo nmake /HELP
           curl -LO http://www.gaia-gis.it/gaia-sins/libspatialite-5.0.1.zip
           7z x libspatialite-5.0.1.zip
           git clone --depth 1 https://github.com/jschueller/libspatialite.git
@@ -79,6 +77,14 @@ jobs:
           del CMakeCache.txt
           cmake -LAH -S libspatialindex-1.9.3 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/spatialindex && cmake --build . --config Release --target install        
 
+          git clone https://github.com/KDE/qca.git && cd qca && git checkout 24e702e6cd0b0a65cf62317e068b0bb7126d4682 && cd ..
+          del CMakeCache.txt
+          cmake -LAH -S qca -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qca -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DUSE_RELATIVE_PATHS=ON && cmake --build . --config Release --target install
+          
+          curl -LO https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.0/QScintilla_src-2.13.0.zip
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+          cd QScintilla_src-2.13.0\src && C:\work\SALOME-9.7.0\W64\qt\bin\qmake qscintilla.pro && nmake && nmake install && cd ..\..
+          
           curl -LO https://downloads.sourceforge.net/winflexbison/files/win_flex_bison3-latest.zip
           7z x win_flex_bison3-latest.zip
 
