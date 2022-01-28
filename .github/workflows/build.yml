@@ -33,14 +33,14 @@ jobs:
           del CMakeCache.txt
           cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/openssl && cmake --build . --config Release --target install
 
-          git clone https://github.com/KDE/qca.git && cd qca && git checkout  24e702e6 && git cherry-pick -n f9442206 d6aef82d cfea7339 && cd ..
+          git clone https://github.com/KDE/qca.git && cd qca && git checkout 24e702e6 && git cherry-pick -n f9442206 d6aef82d cfea7339 && cd ..
           del CMakeCache.txt
           cmake -LAH -S qca -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qca -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DOPENSSL_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/openssl/include -DOPENSSL_SSL_LIBRARY=C:/work/SALOME-9.7.0/W64/openssl/lib/libssl-1_1-x64.lib -DOPENSSL_CRYPTO_LIBRARY=C:/work/SALOME-9.7.0/W64/openssl/lib/libcrypto-1_1-x64.lib -DLIB_EAY_DEBUG=C:/work/SALOME-9.7.0/W64/openssl/lib/libcrypto-1_1-x64.lib -DLIB_EAY_RELEASE=C:/work/SALOME-9.7.0/W64/openssl/lib/libcrypto-1_1-x64.lib -DSSL_EAY_DEBUG=C:/work/SALOME-9.7.0/W64/openssl/lib/libssl-1_1-x64.lib -DSSL_EAY_RELEASE=C:/work/SALOME-9.7.0/W64/openssl/lib/libssl-1_1-x64.lib && cmake --build . --config Release --target install
 
           curl -LO https://github.com/frankosterfeld/qtkeychain/archive/refs/tags/v0.12.0.zip
           7z x v0.12.0.zip
           del CMakeCache.txt
-          cmake -LAH -S C:/work/qtkeychain-0.12.0 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qtkeychain -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt && cmake --build . --config Release --target install
+          cmake -LAH -S qtkeychain-0.12.0 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qtkeychain -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt && cmake --build . --config Release --target install
 
           git clone --depth 1 https://gitlab.com/federicomenaquintero/bzip2.git
           del CMakeCache.txt
@@ -49,7 +49,7 @@ jobs:
           curl -LO https://github.com/nih-at/libzip/archive/refs/tags/v1.8.0.zip
           7z x v1.8.0.zip -oC:\work > nul
           del CMakeCache.txt
-          cmake -LAH -S C:/work/libzip-1.8.0 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/libzip -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DBZIP2_LIBRARIES=C:/work/SALOME-9.7.0/W64/bzip2/lib/bz2.lib -DBZIP2_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/bzip2/include -DENABLE_BZIP2=OFF && cmake --build . --config Release --target install
+          cmake -LAH -S libzip-1.8.0 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/libzip -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DBZIP2_LIBRARIES=C:/work/SALOME-9.7.0/W64/bzip2/lib/bz2.lib -DBZIP2_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/bzip2/include -DENABLE_BZIP2=OFF && cmake --build . --config Release --target install
 
           curl -LO https://github.com/zlib-ng/minizip-ng/archive/refs/tags/3.0.4.zip
           7z x 3.0.4.zip
