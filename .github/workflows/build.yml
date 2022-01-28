@@ -107,7 +107,7 @@ jobs:
           dir /p C:\work
           dir /p C:\work\QScintilla_src-2.13.0
           dir /p C:\work\QScintilla_src-2.13.0\src
-          cd C:\work\QScintilla_src-2.13.0\src && C:\work\SALOME-9.7.0\W64\qt\bin\qmake .\qscintilla.pro && nmake && nmake install && cd ..\..
+          cd C:\work\QScintilla_src-2.13.0\src && dir /p . && C:\work\SALOME-9.7.0\W64\qt\bin\qmake .\qscintilla.pro && nmake && nmake install && cd ..\..
 
           curl -LO https://downloads.sourceforge.net/winflexbison/files/win_flex_bison3-latest.zip
           7z x win_flex_bison3-latest.zip -oC:\work > nul
