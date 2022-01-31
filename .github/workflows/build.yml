@@ -108,7 +108,7 @@ jobs:
 
           git clone --depth 1 https://github.com/nextgis-borsch/lib_qscintilla.git
           del CMakeCache.txt
-          cmake -LAH -S lib_qscintilla -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qscintilla -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include && cmake --build . --config Release --target install
+          cmake -LAH -S lib_qscintilla -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/qscintilla -DQt5_DIR=C:/work/SALOME-9.7.0/W64/qt/lib/cmake/Qt5 -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DZLIB_DLL=C:/work/SALOME-9.7.0/W64/zlib/bin/zlib.dll && cmake --build . --config Release --target install
 
           curl -LO https://downloads.sourceforge.net/winflexbison/files/win_flex_bison3-latest.zip
           7z x win_flex_bison3-latest.zip -oC:\work > nul
