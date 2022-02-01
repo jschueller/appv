@@ -68,11 +68,11 @@ jobs:
           curl -LO https://github.com/libgeos/geos/archive/refs/tags/3.9.2.zip
           7z x 3.9.2.zip -oC:\work > nul
           del CMakeCache.txt
-          cmake -LAH -S C:/work/geos-3.9.2 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/geos -DBUILD_TESTING=OFF && cmake --build . --config Release --target install
+          cmake -LAH -S C:/work/geos-3.9.2 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/geos -DBUILD_TESTING=OFF -DBUILD_BENCHMARKS=OFF && cmake --build . --config Release --target install
 
           git clone --depth 1 https://github.com/azadkuh/sqlite-amalgamation.git
           del CMakeCache.txt
-          cmake -LAH -S sqlite-amalgamation -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/sqlite -DSQLITE_ENABLE_RTREE=ON && cmake --build . --config Release --target install
+          cmake -LAH -S sqlite-amalgamation -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/sqlite -DSQLITE_ENABLE_RTREE=ON -DBUILD_SHELL=ON && cmake --build . --config Release --target install
 
           curl -LO https://github.com/OSGeo/PROJ/archive/refs/tags/8.0.1.zip
           7z x 8.0.1.zip -oC:\work > nul
