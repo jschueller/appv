@@ -16,15 +16,20 @@ jobs:
           dir /p C:\work\SALOME-9.7.0\W64
           dir /p C:\work\SALOME-9.7.0\W64\qt\lib\cmake
 
+          git clone https://github.com/janbar/openssl-cmake.git
+          echo del CMakeCache.txt
+          cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/openssl && cmake --build . --config Release --target install
+          
           curl -LO https://download.qt.io/archive/qt/5.12/5.12.10/submodules/qtbase-everywhere-src-5.12.10.zip
           7z x qtbase-everywhere-src-5.12.10.zip -oC:\work > nul
           call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
-          C:\work\qtbase-everywhere-src-5.12.10\configure -prefix C:\work\SALOME-9.7.0\W64\qt -confirm-license -no-fontconfig -no-separate-debug-info -no-warnings-are-errors -nomake examples -nomake tests -opensource -openssl -openssl-runtime -platform win32-msvc -release -shared -qt-freetype -verbose
+          C:\work\qtbase-everywhere-src-5.12.10\configure -prefix C:\work\SALOME-9.7.0\W64\qt -confirm-license -no-fontconfig -no-separate-debug-info -no-warnings-are-errors -nomake examples -nomake tests -opensource -platform win32-msvc -release -shared -qt-freetype -verbose -openssl -openssl-linked -I C:/work/SALOME-9.7.0/W64/openssl/include -L C:/work/SALOME-9.7.0/W64/openssl/lib
           nmake
           nmake install
           exit 4
           
           git clone --depth 1 https://github.com/madler/zlib.git
+          del CMakeCache.txt
           cmake -LAH -S zlib -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/zlib && cmake --build . --config Release --target install
 
           curl -LO https://github.com/libexpat/libexpat/archive/refs/tags/R_2_4_3.zip
@@ -36,10 +41,6 @@ jobs:
           7z x v0.27.5.zip -oC:\work > nul
           del CMakeCache.txt
           cmake -LAH -S C:/work/exiv2-0.27.5 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/exiv2 -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DEXPAT_LIBRARY=C:/work/SALOME-9.7.0/W64/expat/lib/libexpat.lib -DEXPAT_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/expat/include && cmake --build . --config Release --target install
-
-          git clone https://github.com/janbar/openssl-cmake.git
-          del CMakeCache.txt
-          cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/openssl && cmake --build . --config Release --target install
 
           git clone https://github.com/KDE/qca.git && cd qca && git checkout 24e702e6 && git cherry-pick -n f9442206 d6aef82d cfea7339 && cd ..
           del CMakeCache.txt
