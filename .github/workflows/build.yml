@@ -16,6 +16,14 @@ jobs:
           dir /p C:\work\SALOME-9.7.0\W64
           dir /p C:\work\SALOME-9.7.0\W64\qt\lib\cmake
 
+          curl -LO https://download.qt.io/archive/qt/5.12/5.12.10/submodules/qtbase-everywhere-src-5.12.10.zip
+          7z x qtbase-everywhere-src-5.12.10.zip -oC:\work > nul
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+          C:\work\qtbase-everywhere-src-5.12.10\configure -prefix C:\work\SALOME-9.7.0\W64\qt -confirm-license -no-fontconfig -no-separate-debug-info -no-warnings-are-errors -nomake examples -nomake tests -opensource -openssl -openssl-runtime -platform win32-msvc -release -shared -qt-freetype -verbose
+          nmake
+          nmake install
+          exit 4
+          
           git clone --depth 1 https://github.com/madler/zlib.git
           cmake -LAH -S zlib -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/zlib && cmake --build . --config Release --target install
 
@@ -112,9 +120,6 @@ jobs:
 
           curl -LO https://downloads.sourceforge.net/winflexbison/files/win_flex_bison3-latest.zip
           7z x win_flex_bison3-latest.zip -oC:\work > nul
-
-          curl -LO https://download.qt.io/archive/qt/5.12/5.12.10/submodules/qtbase-everywhere-src-5.12.10.zip
-          7z x qtbase-everywhere-src-5.12.10.zip -oC:\work > nul
 
           curl -LO https://github.com/qgis/QGIS/archive/refs/tags/final-3_16_16.zip
           7z x final-3_16_16.zip -oC:\work > nul
