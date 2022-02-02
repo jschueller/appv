@@ -13,27 +13,14 @@ jobs:
           curl -LO https://files.salome-platform.org/Salome/Salome9.7.0/SALOME-9.7.0.zip
           mkdir C:\work
           7z x SALOME-9.7.0.zip -oC:\work > nul
-          dir /p C:\work\SALOME-9.7.0\W64
-          dir /p C:\work\SALOME-9.7.0\W64\qt\lib\cmake
 
           git clone https://github.com/janbar/openssl-cmake.git
-          echo del CMakeCache.txt
           cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/openssl && cmake --build . --config Release --target install
           
           curl -LO https://download.qt.io/archive/qt/5.12/5.12.10/submodules/qtbase-everywhere-src-5.12.10.zip
           7z x qtbase-everywhere-src-5.12.10.zip -oC:\work > nul
           call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
-          echo cd /d C:\work\qtbase-everywhere-src-5.12.10
-          dir /p
-          echo "CD=%CD%"
-          call configure_qt_ssl.bat
-          echo "CD=%CD%"
-          dir /p
-          cd /d C:\work\qtbase-everywhere-src-5.12.10
-          dir /p
-          nmake
-          nmake install
-          exit 1
+          call qt-5.12.10.bat
 
           git clone --depth 1 https://github.com/madler/zlib.git
           del CMakeCache.txt
