@@ -34,6 +34,7 @@ jobs:
           dir /p
           nmake
           nmake install
+          exit 1
 
           git clone --depth 1 https://github.com/madler/zlib.git
           del CMakeCache.txt
