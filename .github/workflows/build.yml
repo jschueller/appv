@@ -23,7 +23,7 @@ jobs:
           curl -LO https://download.qt.io/archive/qt/5.12/5.12.10/submodules/qtbase-everywhere-src-5.12.10.zip
           7z x qtbase-everywhere-src-5.12.10.zip -oC:\work > nul
           call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
-          C:\work\qtbase-everywhere-src-5.12.10\configure -prefix C:\work\SALOME-9.7.0\W64\qt -confirm-license -no-fontconfig -no-separate-debug-info -no-warnings-are-errors -nomake examples -nomake tests -opensource -platform win32-msvc -release -shared -qt-freetype -verbose -openssl -openssl-linked -I C:/work/SALOME-9.7.0/W64/openssl/include -L C:/work/SALOME-9.7.0/W64/openssl/lib
+          C:\work\qtbase-everywhere-src-5.12.10\configure -prefix C:\work\SALOME-9.7.0\W64\qt -confirm-license -no-fontconfig -no-separate-debug-info -no-warnings-are-errors -nomake examples -nomake tests -opensource -platform win32-msvc -release -shared -qt-freetype -verbose -openssl -openssl-linked OPENSSL_INCDIR="C:\work\SALOME-9.7.0\W64\openssl\include" OPENSSL_LIBDIR="C:\work\SALOME-9.7.0\W64\openssl\lib" OPENSSL_LIBS="-llibcrypto-1_1-x64 -llibssl-1_1-x64"
           nmake
           nmake install
           exit 4
