@@ -21,6 +21,8 @@ jobs:
           7z x qtbase-everywhere-src-5.12.10.zip -oC:\work > nul
           call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
           call qt-5.12.10.bat
+          nmake   
+          nmake install
 
           git clone --depth 1 https://github.com/madler/zlib.git
           del CMakeCache.txt
