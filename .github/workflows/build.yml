@@ -94,10 +94,10 @@ jobs:
           del CMakeCache.txt
           cmake -LAH -S C:/work/libspatialindex-1.9.3 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/spatialindex && cmake --build . --config Release --target install
 
-          curl -LO https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.16.0.zip
-          7z x v3.16.0.zip -oC:\work > nul
+          curl -LO https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.19.4.zip
+          7z x v3.19.4.zip -oC:\work > nul
           del CMakeCache.txt
-          cmake -LAH -S C:/work/protobuf-3.16.0/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
+          cmake -LAH -S C:/work/protobuf-3.19.4/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
 
           curl -LO https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.0/QScintilla_src-2.13.0.zip
           7z x QScintilla_src-2.13.0.zip -oC:\work > nul
