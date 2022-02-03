@@ -16,13 +16,6 @@ jobs:
 
           git clone https://github.com/janbar/openssl-cmake.git
           cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/openssl && cmake --build . --config Release --target install
-          
-          curl -LO https://download.qt.io/archive/qt/5.12/5.12.10/submodules/qtbase-everywhere-src-5.12.10.zip
-          7z x qtbase-everywhere-src-5.12.10.zip -oC:\work > nul
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
-          call qt-5.12.10.bat
-          nmake   
-          nmake install
 
           git clone --depth 1 https://github.com/madler/zlib.git
           del CMakeCache.txt
@@ -86,7 +79,7 @@ jobs:
 
           curl -LO https://github.com/OSGeo/gdal/archive/refs/tags/v3.3.1.zip
           7z x v3.3.1.zip -oC:\work > nul
-          git clone --depth 1 https://github.com/OSGeo/gdal.git
+          git clone --depth 1 -b v3.4.1 https://github.com/OSGeo/gdal.git
           del CMakeCache.txt
           cmake -LAH -S gdal -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/gdal -DPROJ_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib -DPROJ_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/proj/include -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DGDAL_USE_MYSQL=OFF -DGDAL_USE_SQLITE3=OFF -DGDAL_ENABLE_PLUGINS=OFF -DJPEG_LIBRARY=C:/work/SALOME-9.7.0/W64/jpeg/lib/jpeg.lib -DJPEG_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/jpeg/include -DRENAME_INTERNAL_LIBJPEG_SYMBOLS=OFF -DBUILD_APPS=OFF -DBUILD_CSHARP_BINDINGS=OFF -DBUILD_DOCS=OFF -DBUILD_JAVA_BINDINGS=OFF -DBUILD_PYTHON_BINDINGS=OFF -DBUILD_TESTING=OFF && cmake --build . --config Release --target install
 
@@ -117,6 +110,13 @@ jobs:
 
           curl -LO https://downloads.sourceforge.net/winflexbison/files/win_flex_bison3-latest.zip
           7z x win_flex_bison3-latest.zip -oC:\work > nul
+
+          curl -LO https://download.qt.io/archive/qt/5.12/5.12.10/submodules/qtbase-everywhere-src-5.12.10.zip
+          7z x qtbase-everywhere-src-5.12.10.zip -oC:\work > nul
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+          call qt-5.12.10.bat
+          nmake
+          nmake install
 
           curl -LO https://github.com/qgis/QGIS/archive/refs/tags/final-3_16_16.zip
           7z x final-3_16_16.zip -oC:\work > nul
