@@ -14,13 +14,20 @@ jobs:
           mkdir C:\work
           7z x SALOME-9.7.0.zip -oC:\work > nul
 
-          git clone https://github.com/janbar/openssl-cmake.git
-          cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/openssl -DMSVC_DYNAMIC_RUNTIME=ON && cmake --build . --config Release --target install
-
           git clone --depth 1 https://github.com/madler/zlib.git
-          del CMakeCache.txt
           cmake -LAH -S zlib -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/zlib && cmake --build . --config Release --target install
 
+          curl -LO https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.19.4.zip
+          7z x v3.19.4.zip -oC:\work > nul
+          del CMakeCache.txt
+          cmake -LAH -S C:/work/protobuf-3.19.4/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL -Dprotobuf_MSVC_STATIC_RUNTIME=OFF -Dprotobuf_BUILD_SHARED_LIBS=ON -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
+          set "PATH=C:/work/SALOME-9.7.0/W64/protobuf/bin;C:/work/SALOME-9.7.0/W64/zlib/bin;%PATH%"
+          protoc --version
+
+          git clone https://github.com/janbar/openssl-cmake.git
+          del CMakeCache.txt
+          cmake -LAH -S openssl-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/openssl -DMSVC_DYNAMIC_RUNTIME=ON && cmake --build . --config Release --target install
+          
           curl -LO https://github.com/libexpat/libexpat/archive/refs/tags/R_2_4_3.zip
           7z x R_2_4_3.zip -oC:\work > nul
           del CMakeCache.txt
@@ -93,11 +100,6 @@ jobs:
           7z x 1.9.3.zip -oC:\work > nul
           del CMakeCache.txt
           cmake -LAH -S C:/work/libspatialindex-1.9.3 -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/spatialindex && cmake --build . --config Release --target install
-
-          curl -LO https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.19.4.zip
-          7z x v3.19.4.zip -oC:\work > nul
-          del CMakeCache.txt
-          cmake -LAH -S C:/work/protobuf-3.19.4/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL -Dprotobuf_MSVC_STATIC_RUNTIME=OFF -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
 
           curl -LO https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.0/QScintilla_src-2.13.0.zip
           7z x QScintilla_src-2.13.0.zip -oC:\work > nul
