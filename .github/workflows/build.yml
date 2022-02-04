@@ -20,7 +20,7 @@ jobs:
           curl -LO https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.19.4.zip
           7z x v3.19.4.zip -oC:\work > nul
           del CMakeCache.txt
-          cmake -LAH -S C:/work/protobuf-3.19.4/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL -Dprotobuf_MSVC_STATIC_RUNTIME=OFF -Dprotobuf_BUILD_SHARED_LIBS=ON -Dprotobuf_BUILD_TESTS=OFF && cmake --build . --config Release --target install
+          cmake -LAH -S C:/work/protobuf-3.19.4/cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/protobuf -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL -Dprotobuf_MSVC_STATIC_RUNTIME=OFF -Dprotobuf_BUILD_SHARED_LIBS=ON -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_C_FLAGS_RELEASE="/MD /O2 /Ob2 /DNDEBUG" -DCMAKE_CXX_FLAGS_RELEASE="/MD /O2 /Ob2 /DNDEBUG" && cmake --build . --config Release --target install
           set "PATH=C:/work/SALOME-9.7.0/W64/protobuf/bin;C:/work/SALOME-9.7.0/W64/zlib/bin;%PATH%"
           protoc --version
 
