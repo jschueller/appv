@@ -86,7 +86,8 @@ jobs:
 
           curl -LO https://github.com/OSGeo/gdal/archive/refs/tags/v3.3.1.zip
           7z x v3.3.1.zip -oC:\work > nul
-          git clone --depth 1 https://github.com/OSGeo/gdal.git
+          git clone --depth 1000 https://github.com/OSGeo/gdal.git
+          pushd gdal && git checkout 2cb83163 && popd
           del CMakeCache.txt
           cmake -LAH -S gdal -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/gdal -DPROJ_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib -DPROJ_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/proj/include -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DGDAL_USE_MYSQL=OFF -DGDAL_USE_SQLITE3=OFF -DGDAL_ENABLE_PLUGINS=OFF -DJPEG_LIBRARY=C:/work/SALOME-9.7.0/W64/jpeg/lib/jpeg.lib -DJPEG_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/jpeg/include -DRENAME_INTERNAL_LIBJPEG_SYMBOLS=OFF -DBUILD_APPS=OFF -DBUILD_CSHARP_BINDINGS=OFF -DBUILD_DOCS=OFF -DBUILD_JAVA_BINDINGS=OFF -DBUILD_PYTHON_BINDINGS=OFF -DBUILD_TESTING=OFF && cmake --build . --config Release --target install
 
