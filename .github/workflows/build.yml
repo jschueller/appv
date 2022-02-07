@@ -109,10 +109,12 @@ jobs:
           curl -LO https://download.qt.io/archive/qt/5.12/5.12.10/submodules/qtbase-everywhere-src-5.12.10.zip
           7z x qtbase-everywhere-src-5.12.10.zip -oC:\work > nul
           call qt-5.12.10.bat
-          curl -LO http://download.qt.io/official_releases/jom/jom.zip
-          7z x jom.zip
-          jom -U release
-          jom -U install
+          nmake
+          nmake install
+          echo curl -LO http://download.qt.io/official_releases/jom/jom.zip
+          echo 7z x jom.zip
+          echo jom -U release
+          echo jom -U install
 
           curl -LO https://github.com/qgis/QGIS/archive/refs/tags/final-3_16_16.zip
           7z x final-3_16_16.zip -oC:\work > nul
