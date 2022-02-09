@@ -162,19 +162,4 @@ echo QGIS_PLUGINPATH=%%out_dir_Path%%\W64\qgis\plugins >> SALOME-9.7.0\env_launc
 echo QGIS_PREFIX_PATH=%%out_dir_Path%%\W64\qgis >> SALOME-9.7.0\env_launch.bat
 type SALOME-9.7.0\env_launch.bat
 
-rmdir /s/q SALOME-9.7.0\llvm
-rmdir /s/q SALOME-9.7.0\omniORB
-rmdir /s/q SALOME-9.7.0\Python
-rmdir /s/q SALOME-9.7.0\EXT
-rmdir /s/q SALOME-9.7.0\DOCUMENTATION
-rmdir /s/q SALOME-9.7.0\Paraview
-rmdir /s/q SALOME-9.7.0\SMESH
-rmdir /s/q SALOME-9.7.0\CAS
-rmdir /s/q SALOME-9.7.0\MEDCOUPLING
-rmdir /s/q SALOME-9.7.0\FIELDS
-rmdir /s/q SALOME-9.7.0\SMESH
-rmdir /s/q SALOME-9.7.0\perl
-rmdir /s/q SALOME-9.7.0\mesa
-rmdir /s/q SALOME-9.7.0\mdefile
-
 7z a SALOME-9.7.0.zip SALOME-9.7.0
