@@ -136,30 +136,30 @@ cmake -LAH -S "C:/work/QGIS-final-3_16_16" -G "Ninja" -DCMAKE_INSTALL_PREFIX=C:/
 
 :: update launch script
 cd /d C:\work
-echo PATH=%%out_dir_Path%%\W64\zlib\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\bzip2\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\libzip\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\minizip\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\expat\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\libxml2\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\openssl\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\sqlite\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\geos\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\protobuf\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\gdal\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\proj\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\qt\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\qtkeychain\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\qwt\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\qca\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\qca\lib\qca-qt5\crypto;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo QCA_PLUGIN_PATH=%%out_dir_Path%%\W64\qca\lib\qca-qt5;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\exiv2\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\spatialite\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\spatialindex\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo PATH=%%out_dir_Path%%\W64\qgis\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
-echo QGIS_PLUGINPATH=%%out_dir_Path%%\W64\qgis\plugins >> SALOME-9.7.0\env_launch.bat
-echo QGIS_PREFIX_PATH=%%out_dir_Path%%\W64\qgis >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\zlib\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\bzip2\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\libzip\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\minizip\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\expat\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\libxml2\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\openssl\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\sqlite\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\geos\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\protobuf\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\gdal\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\proj\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\qt\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\qtkeychain\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\qwt\lib;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\qca\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\qca\lib\qca-qt5\crypto;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set QCA_PLUGIN_PATH=%%out_dir_Path%%\W64\qca\lib\qca-qt5 >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\exiv2\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\spatialite\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\spatialindex\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set PATH=%%out_dir_Path%%\W64\qgis\bin;%%PATH%% >> SALOME-9.7.0\env_launch.bat
+echo set QGIS_PLUGINPATH=%%out_dir_Path%%\W64\qgis\plugins >> SALOME-9.7.0\env_launch.bat
+echo set QGIS_PREFIX_PATH=%%out_dir_Path%%\W64\qgis >> SALOME-9.7.0\env_launch.bat
 type SALOME-9.7.0\env_launch.bat
 
 7z a SALOME-9.7.0.zip SALOME-9.7.0

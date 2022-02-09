@@ -14,6 +14,6 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: salome_zip
-          path: C:\work\SALOME-9.7.0.zip
+          name: SALOME-9.7.0
+          path: C:\work\SALOME-9.7.0
 
