@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [ master ]
+    branches: [ mainwin ]
   pull_request:
 jobs:
   windows:
@@ -10,10 +10,12 @@ jobs:
       - name: Install
         shell: cmd
         run: |
-          call salome_qgis.bat
+          cd mainwin
+          cmake -G "Visual Studio 15 2017" -A x64 .
+          cmake --build . --config Release
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: SALOME-9.7.0
-          path: C:\work\SALOME-9.7.0
+          name: mainwin
+          path: mainwin\Release\qgis-bin.exe
 
