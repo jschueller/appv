@@ -95,7 +95,7 @@ cmake -LAH -S C:/work/proj-8.0.1 -G "Ninja" -DCMAKE_INSTALL_PREFIX=C:/work/SALOM
 git clone --depth 1000 https://github.com/OSGeo/gdal.git
 pushd gdal && git checkout 2cb83163 && popd
 del CMakeCache.txt
-cmake -LAH -S gdal -G "Ninja" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/gdal -DCMAKE_BUILD_TYPE=Release -DPROJ_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib -DPROJ_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/proj/include -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DGDAL_USE_MYSQL=OFF -DGDAL_USE_SQLITE3=OFF -DGDAL_ENABLE_PLUGINS=OFF -DJPEG_LIBRARY=C:/work/SALOME-9.7.0/W64/jpeg/lib/jpeg.lib -DJPEG_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/jpeg/include -DRENAME_INTERNAL_LIBJPEG_SYMBOLS=OFF -DBUILD_APPS=OFF -DBUILD_CSHARP_BINDINGS=OFF -DBUILD_DOCS=OFF -DBUILD_JAVA_BINDINGS=OFF -DBUILD_PYTHON_BINDINGS=OFF -DBUILD_TESTING=OFF && cmake --build . --config Release --target install
+cmake -LAH -S gdal -G "Ninja" -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/gdal -DCMAKE_BUILD_TYPE=Release -DPROJ_LIBRARY=C:/work/SALOME-9.7.0/W64/proj/lib/proj.lib -DPROJ_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/proj/include -DZLIB_LIBRARY=C:/work/SALOME-9.7.0/W64/zlib/lib/zlib.lib -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/zlib/include -DGDAL_USE_MYSQL=OFF -DGDAL_USE_SQLITE3=OFF -DGDAL_ENABLE_PLUGINS=OFF -DJPEG_LIBRARY=C:/work/SALOME-9.7.0/W64/jpeg/lib/jpeg.lib -DJPEG_INCLUDE_DIR=C:/work/SALOME-9.7.0/W64/jpeg/include -DRENAME_INTERNAL_LIBJPEG_SYMBOLS=OFF -DBUILD_APPS=OFF -DBUILD_CSHARP_BINDINGS=OFF -DBUILD_DOCS=OFF -DBUILD_JAVA_BINDINGS=OFF -DBUILD_PYTHON_BINDINGS=OFF -DBUILD_TESTING=OFF -DGDAL_USE_MSSQL_NCLI=OFF -DBUILD_CSHARP_BINDINGS=OFF -DBUILD_JAVA_BINDINGS=OFF && cmake --build . --config Release --target install
 
 :: spatialite
 git clone --depth 1 https://github.com/jschueller/libspatialite.git
@@ -161,5 +161,15 @@ echo set PATH=%%out_dir_Path%%\W64\qgis\bin;%%PATH%% >> SALOME-9.7.0\env_launch.
 echo set QGIS_PLUGINPATH=%%out_dir_Path%%\W64\qgis\plugins >> SALOME-9.7.0\env_launch.bat
 echo set QGIS_PREFIX_PATH=%%out_dir_Path%%\W64\qgis >> SALOME-9.7.0\env_launch.bat
 type SALOME-9.7.0\env_launch.bat
+
+:: qgis launch script
+echo PATH > SALOME-9.7.0\W64\qgis\bin\qgis.vars
+echo QT_PLUGIN_PATH >> SALOME-9.7.0\W64\qgis\bin\qgis.vars
+echo call env_launch.bat > SALOME-9.7.0\qgis_launch.bat
+echo pause >> SALOME-9.7.0\qgis_launch.bat
+echo qgis --postinstall >> SALOME-9.7.0\qgis_launch.bat
+echo pause >> SALOME-9.7.0\qgis_launch.bat
+echo qgis >> SALOME-9.7.0\qgis_launch.bat
+echo pause >> SALOME-9.7.0\qgis_launch.bat
 
 7z a SALOME-9.7.0.zip SALOME-9.7.0
